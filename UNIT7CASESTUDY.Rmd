@@ -1,0 +1,155 @@
+---
+title: "Unit 7"
+author: "Solange GarciadeAlford"
+date: "October 10, 2018"
+output: 
+  html_document:
+    keep_md: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+```{r}
+
+brdata <- read.csv("C:/Users/solan/documents/breweries.csv")
+bedata <- read.csv("C:/Users/solan/documents/beers.csv")
+
+
+```
+## Questions of Interest
+```{r}
+
+## Q1 - How many brewries are present in each state?
+
+str(brdata)
+str(bedata)
+
+options(repos="https://cran.rstudio.com" )
+
+install.packages("tidyverse")
+
+library(plyr)
+
+count(brdata, c("State"))
+
+
+## Q2 - Merge beer data with the breweries data. Print the first 6 observations and the last six observations to check the merged file.
+
+##chaning the name of the column in the satesize data frame for merging files
+names(brdata)[1] <- "Brewery_id"
+str(brdata)
+
+##merging files
+mdata <- merge(brdata, bedata , by = "Brewery_id")
+str(mdata)
+head(mdata)
+tail(mdata)
+
+
+##Q3 - Report the number of NA's in each column.
+count(mdata$Brewery_id == "NA")
+count(mdata$Name.x == "NA")
+count(mdata$City == "NA")
+count(mdata$State == "NA")
+count(mdata$Name.y == "NA")
+count(mdata$Beer_ID == "NA")
+count(mdata$ABV == "NA")
+count(mdata$IBU == "NA")
+count(mdata$Style == "NA")
+count(mdata$Ounces == "NA")
+
+##Q4 - Compute the median alcohol content and international bitterness unit for each state. 
+
+install.packages("stats")
+library(stats)
+
+median.ABV <- data.frame(aggregate(ABV ~ State, data = mdata, median))
+median.IBU <- data.frame(aggregate(IBU ~ State, data = mdata, median))
+median.ABV
+median.IBU
+
+
+##     Plot a bar chart to compare.
+install.packages("ggplot2")
+library(ggplot2)
+
+medians.st <- merge(median.ABV, median.IBU , by = "State")
+str(medians.st)
+
+ggplot(data=medians.st, aes(x=State, y=IBU )) +   
+geom_bar(aes(fill = IBU), position = "dodge", stat="identity") +
+labs(title = "         Median International Bitterness Unit by State") +
+labs(caption = "(Based on data from study case)") +
+theme(axis.text.x = element_text(color="#993333", 
+                           size=7, angle=90),
+        axis.text.y = element_text(face="bold", color="#993333", 
+                           size=10, angle=90))
+
+
+ggplot(data=medians.st, aes(x=State, y=ABV )) +   
+geom_bar(aes(fill = ABV), position = "dodge", stat="identity") +
+labs(title = "         Median Alcohol Content by State") +
+labs(caption = "(Based on data from study case)") +
+theme(axis.text.x = element_text(color="#993333", 
+                           size=7, angle=90),
+        axis.text.y = element_text(face="bold", color="#993333", 
+                           size=10, angle=90))
+
+
+## Q5 -- Which state has the maximum alcoholic (ABV) beer? Which state has the most bitter (IBU) beer?
+
+a <- max(medians.st$ABV)
+b <- max(medians.st$IBU)
+a
+b
+
+c.df <- data.frame(which(medians.st$ABV == a))
+c.df
+c.df1 <- c.df[1,1]
+c.df2 <- c.df[2,1]
+c.df1
+c.df2
+
+st.medABV1 <- medians.st[8,]
+st.medABV2 <- medians.st[18,]
+st.medABV1
+st.medABV2
+
+## Kentucky and Washington, D.C, have the highest median maximum alcoholic (ABV) beers.
+
+ci.df <- data.frame(which(medians.st$IBU == b))
+ci.df
+ci.df1 <- c.df[1,1]
+ci.df1
+
+st.medIBU <- medians.st[22,]
+st.medIBU
+
+## Main is the state with the highest median IBU beer
+
+
+## Q6  - Summary statistics for the ABV variable.
+
+summary(mdata$ABV)
+
+
+## Q7 - Is there an apparent relationship between the bitterness of the beer and its alcoholic content? 
+## Draw a scatter plot.
+
+
+
+
+```
+
+## Including Plots
+
+
+
+```{r }
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

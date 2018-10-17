@@ -4,7 +4,7 @@ author: "Solange GarciadeAlford"
 date: "October 10, 2018"
 output: 
   html_document:
-    keep_md: true
+    keep_md: true 
 ---
 
 ```{r setup, include=FALSE}
@@ -128,7 +128,7 @@ ci.df1
 st.medIBU <- medians.st[22,]
 st.medIBU
 
-## Main is the state with the highest median IBU beer
+## Maine is the state with the highest median IBU beer
 
 
 ## Q6  - Summary statistics for the ABV variable.
@@ -136,15 +136,24 @@ st.medIBU
 summary(mdata$ABV)
 
 
-## Q7 - Is there an apparent relationship between the bitterness of the beer and its alcoholic content? 
+## Q7 - There is an apparent relationship between the bitterness of the beer and its alcoholic content? 
 ## Draw a scatter plot.
 
+## Graphing packages found at:
+##http://www.sthda.com/english/wiki/ggplot2-scatterplot-easy-scatter-plot-using-ggplot2-and-r-statistical-software
 
+install.packages("devtools")
+library(devtools)
+install_github("easyGgplot2", "kassambara")
+library(easyGgplot2)
+
+
+ggplot2.scatterplot(data=mdata, xName='ABV', yName='IBU', mapping=aes(size = qsec), addRegLine=TRUE, regLineColor="red", mainTitle='                                        AVB versus IBU', xtitle="Alcohol by Volume of Beer", ytitle="International Bitterness Units", shape=23, size=2, fill="navy")
 
 
 ```
 
-## Including Plots
+## I
 
 
 

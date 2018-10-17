@@ -4,7 +4,7 @@ author: "Solange GarciadeAlford"
 date: "October 10, 2018"
 output: 
   html_document:
-    keep_md: true
+    keep_md: true 
 ---
 
 
@@ -61,7 +61,7 @@ install.packages("tidyverse")
 ## package 'tidyverse' successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-## 	C:\Users\solan\AppData\Local\Temp\RtmpY7D0ae\downloaded_packages
+## 	C:\Users\solan\AppData\Local\Temp\Rtmpy0MZl4\downloaded_packages
 ```
 
 ```r
@@ -457,7 +457,7 @@ install.packages("ggplot2")
 ## package 'ggplot2' successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-## 	C:\Users\solan\AppData\Local\Temp\RtmpY7D0ae\downloaded_packages
+## 	C:\Users\solan\AppData\Local\Temp\Rtmpy0MZl4\downloaded_packages
 ```
 
 ```r
@@ -601,7 +601,7 @@ st.medIBU
 ```
 
 ```r
-## Main is the state with the highest median IBU beer
+## Maine is the state with the highest median IBU beer
 
 
 ## Q6  - Summary statistics for the ABV variable.
@@ -615,9 +615,58 @@ summary(mdata$ABV)
 ```
 
 ```r
-## Q7 - Is there an apparent relationship between the bitterness of the beer and its alcoholic content? 
+## Q7 - There is an apparent relationship between the bitterness of the beer and its alcoholic content? 
 ## Draw a scatter plot.
+
+## Graphing packages found at:
+##http://www.sthda.com/english/wiki/ggplot2-scatterplot-easy-scatter-plot-using-ggplot2-and-r-statistical-software
+
+install.packages("devtools")
 ```
+
+```
+## Installing package into 'C:/Users/solan/Documents/R/win-library/3.5'
+## (as 'lib' is unspecified)
+```
+
+```
+## package 'devtools' successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+## 	C:\Users\solan\AppData\Local\Temp\Rtmpy0MZl4\downloaded_packages
+```
+
+```r
+library(devtools)
+install_github("easyGgplot2", "kassambara")
+```
+
+```
+## Warning: Username parameter is deprecated. Please use kassambara/
+## easyGgplot2
+```
+
+```
+## Skipping install of 'easyGgplot2' from a github remote, the SHA1 (cb017c1c) has not changed since last install.
+##   Use `force = TRUE` to force installation
+```
+
+```r
+library(easyGgplot2)
+
+
+ggplot2.scatterplot(data=mdata, xName='ABV', yName='IBU', mapping=aes(size = qsec), addRegLine=TRUE, regLineColor="red", mainTitle='                                        AVB versus IBU', xtitle="Alcohol by Volume of Beer", ytitle="International Bitterness Units", shape=23, size=2, fill="navy")
+```
+
+```
+## Warning: Removed 1005 rows containing non-finite values (stat_smooth).
+```
+
+```
+## Warning: Removed 1005 rows containing missing values (geom_point).
+```
+
+![](UNIT7CASESTUDY_files/figure-html/unnamed-chunk-2-3.png)<!-- -->
 
 ## Including Plots
 

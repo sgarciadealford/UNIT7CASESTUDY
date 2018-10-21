@@ -15,4 +15,5 @@ The GitHub repository also includes
     3.a. Beers csv file
     3.b. Breweries csv file
 4. This README.md file
+5. The YouTube link is:  https://www.youtube.com/watch?v=ssf3Wnac5c8
  

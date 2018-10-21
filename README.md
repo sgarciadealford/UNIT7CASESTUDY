@@ -11,5 +11,8 @@ The GitHub repository also includes
 2. The Jing SWF file with the recording of my presentation
     2.a. 2018-10-20_2312_Breweries_and_Beers.swf 
      note:  I am still trying to convert the file to MPF so that I can upload eot Youtub
-3. This README.md file
+3. Data files:
+    3.a. Beers csv file
+    3.b. Breweries csv file
+4. This README.md file
  
